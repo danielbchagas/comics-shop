@@ -1,11 +1,13 @@
 using ComicsShop.Identity.Api.Configuration;
+using ComicsShop.Identity.Api.Middlewares;
 using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
-#region
+#region Configure Services
 
 builder.IdentityConfigure();
+builder.OpenTelemetryConfigure();
 
 #endregion
 
@@ -18,7 +20,11 @@ builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
+// Configure ASP.NET Identity Endpoints
 app.MapIdentityApi<IdentityUser>();
+
+// Configure Middlewares
+app.UseMiddleware<RequestLoggingMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
