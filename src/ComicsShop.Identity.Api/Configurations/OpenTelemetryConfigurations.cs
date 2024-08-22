@@ -3,7 +3,7 @@ using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 
-namespace ComicsShop.Identity.Api.Configuration;
+namespace ComicsShop.Identity.Api.Configurations;
 
 public static class OpenTelemetryConfigurations
 {

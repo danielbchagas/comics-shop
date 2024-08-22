@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
-namespace ComicsShop.Identity.Api.Configuration
+namespace ComicsShop.Identity.Api.Configurations
 {
     public static class IdentityConfigurations
     {

@@ -1,4 +1,4 @@
-using ComicsShop.Identity.Api.Configuration;
+using ComicsShop.Identity.Api.Configurations;
 using ComicsShop.Identity.Api.Middlewares;
 using Microsoft.AspNetCore.Identity;
 
