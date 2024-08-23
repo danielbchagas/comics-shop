@@ -4,11 +4,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ComicsShop.Identity.Api.Infrastructure.Data
 {
-    public class ApplicationDbContext : IdentityDbContext<IdentityUser>
+    public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : IdentityDbContext<IdentityUser>(options)
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
-        { }
-
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.HasDefaultSchema("public");
