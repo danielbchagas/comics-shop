@@ -1,5 +1,4 @@
 using ComicsShop.Identity.Api.Configurations;
-using ComicsShop.Identity.Api.Middlewares;
 using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -22,9 +21,6 @@ var app = builder.Build();
 
 // Configure ASP.NET Identity Endpoints
 app.MapIdentityApi<IdentityUser>();
-
-// Configure Middlewares
-app.UseMiddleware<RequestLoggingMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

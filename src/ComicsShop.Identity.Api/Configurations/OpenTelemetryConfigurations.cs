@@ -9,8 +9,8 @@ public static class OpenTelemetryConfigurations
 {
     public static void OpenTelemetryConfigure(this WebApplicationBuilder builder)
     {
-        const string serviceName = "roll-dice";
-
+        const string serviceName = "comics-shop-identity";
+        
         builder.Logging.AddOpenTelemetry(options =>
         {
             options
@@ -19,6 +19,7 @@ public static class OpenTelemetryConfigurations
                         .AddService(serviceName))
                 .AddConsoleExporter();
         });
+        
         builder.Services.AddOpenTelemetry()
             .ConfigureResource(resource => resource.AddService(serviceName))
             .WithTracing(tracing => tracing
