@@ -1,0 +1,6 @@
+@ComicsShop.Catalog.Api_HostAddress = http://localhost:5145
+
+GET {{ComicsShop.Catalog.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
