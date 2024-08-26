@@ -1,6 +1,7 @@
-@ComicsShop.Catalog.Api_HostAddress = http://localhost:5145
-
-GET {{ComicsShop.Catalog.Api_HostAddress}}/weatherforecast/
+GET {{HostAddress}}/comics?query=?limit=1&offset=0
 Accept: application/json
 
 ###
+
+GET {{HostAddress}}/comics/1000
+Accept: application/json

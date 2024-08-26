@@ -1,4 +1,3 @@
-using ComicsShop.Catalog.Api;
 using ComicsShop.Catalog.Api.Configurations;
 
 var builder = WebApplication.CreateBuilder(args);
