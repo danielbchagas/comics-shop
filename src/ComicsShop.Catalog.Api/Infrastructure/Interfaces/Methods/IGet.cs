@@ -7,5 +7,5 @@ public interface IGet<T> where T : class
     /// </summary>
     /// <param name="query"></param>
     /// <returns></returns>
-    Task<T> GetAsync(QueryString query);
+    Task<T> GetAsync(QueryString query, CancellationToken cancellationToken);
 }

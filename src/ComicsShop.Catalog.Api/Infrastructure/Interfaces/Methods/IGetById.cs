@@ -7,5 +7,5 @@ public interface IGetById<T> where T : class
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
-    Task<T> GetAsync(int id);
+    Task<T> GetAsync(int id, CancellationToken cancellationToken);
 }

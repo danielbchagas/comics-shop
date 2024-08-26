@@ -13,7 +13,7 @@ public class ComicsService(IHttpClientFactory clientFactory, IOptions<MarvelApiO
     private readonly HttpClient _client = clientFactory.CreateClient("ComicsService");
     private readonly MarvelApiOption _marvelApiOption = marvelApiConfig.Value;
 
-    public async Task<Rootobject> GetAsync(QueryString query)
+    public async Task<Rootobject> GetAsync(QueryString query, CancellationToken cancellationToken)
     {
         var url = string.Empty;
         var (hash, timeStamp, publicKey, privateKey) = CreateCredentials();
@@ -23,33 +23,33 @@ public class ComicsService(IHttpClientFactory clientFactory, IOptions<MarvelApiO
         else
             url = $"/v1/public/comics?ts={timeStamp}&apikey={publicKey}&hash={hash}";
 
-        var result = await _client.GetAsync(url);
+        var result = await _client.GetAsync(url, cancellationToken);
         
         if (!result.IsSuccessStatusCode)
         {
             throw new Exception("Error");
         }
         
-        var content = await result.Content.ReadAsStringAsync();
-        var comics = JsonSerializer.Deserialize<Rootobject>(content);
-        
+        var content = await result.Content.ReadAsStreamAsync(cancellationToken);
+        var comics = await JsonSerializer.DeserializeAsync<Rootobject>(content, cancellationToken: cancellationToken);
+
         return comics;
     }
 
-    public async Task<Rootobject> GetAsync(int id)
+    public async Task<Rootobject> GetAsync(int id, CancellationToken cancellationToken)
     {
         var (hash, timeStamp, publicKey, privateKey) = CreateCredentials();
         var url = $"/v1/public/comics/{id}?ts={timeStamp}&apikey={publicKey}&hash={hash}";
         
-        var result = await _client.GetAsync(url);
+        var result = await _client.GetAsync(url, cancellationToken);
         
         if (!result.IsSuccessStatusCode)
         {
             throw new Exception("Error");
         }
         
-        var content = await result.Content.ReadAsStringAsync();
-        var comics = JsonSerializer.Deserialize<Rootobject>(content);
+        var content = await result.Content.ReadAsStreamAsync(cancellationToken);
+        var comics = await JsonSerializer.DeserializeAsync<Rootobject>(content, cancellationToken: cancellationToken);
         
         return comics;
     }
