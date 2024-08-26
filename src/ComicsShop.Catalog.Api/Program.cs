@@ -12,6 +12,7 @@ builder.Services.AddSwaggerGen();
 
 builder.DependencyInjectionConfirgure();
 builder.OptionsConfigurationConfigure();
+builder.RestClientConfigure();
 
 #endregion
 
