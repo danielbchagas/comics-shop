@@ -65,14 +65,12 @@ public class ComicsService(IHttpClientFactory clientFactory, IOptions<MarvelApiO
         return (hash, timeStamp, publicKey, privateKey);
     }
 
-    private string ComputeHash(
-            string ts, string publicKey, string privateKey)
+    private string ComputeHash(string ts, string publicKey, string privateKey)
     {
-        byte[] bytes =
-            Encoding.UTF8.GetBytes(ts + privateKey + publicKey);
-        var gerador = MD5.Create();
-        byte[] bytesHash = gerador.ComputeHash(bytes);
-        return BitConverter.ToString(bytesHash)
-            .ToLower().Replace("-", String.Empty);
+        byte[] encodedSignatureBytes = Encoding.UTF8.GetBytes(ts + privateKey + publicKey);
+        MD5 md5 = MD5.Create();
+        byte[] signatureHashBytes = md5.ComputeHash(encodedSignatureBytes);
+        return BitConverter.ToString(signatureHashBytes)
+            .ToLower().Replace("-", string.Empty);
     }
 }
