@@ -73,4 +73,12 @@ public class ComicsService(IHttpClientFactory clientFactory, IOptions<MarvelApiO
         return BitConverter.ToString(signatureHashBytes)
             .ToLower().Replace("-", string.Empty);
     }
+
+    private JsonSerializerOptions GetOptions()
+    {
+        return new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = true,
+        };
+    }
 }
